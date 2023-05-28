@@ -1,2 +1,2 @@
-# eduverse-django
-An E-learning website backend, written in django
+# EduVerse (Backend)
+An E-learning website backend, written in Django
