@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from rest_framework.response import Response
 from rest_framework import generics, views, status
 from rest_framework.permissions import IsAuthenticated
+
+from .pagination import DefaultPagination
 from .models import Course, Section
 from .serializers import CourseSerializer, CourseSectionsSerializer
 from .permissions import IsAdminOrReadOnly
@@ -11,6 +13,7 @@ class CourseListView(generics.ListCreateAPIView):
     queryset = Course.active.all()
     serializer_class = CourseSerializer
     permission_classes = [IsAdminOrReadOnly,]
+    pagination_class = DefaultPagination
     lookup_field = 'slug'
 
 
