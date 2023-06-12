@@ -17,6 +17,14 @@ class CourseListView(generics.ListCreateAPIView):
     lookup_field = 'slug'
 
 
+class LatestCourseListView(generics.ListCreateAPIView):
+    queryset = Course.active.all().order_by('-created_at')
+    serializer_class = CourseSerializer
+    permission_classes = [IsAdminOrReadOnly,]
+    pagination_class = DefaultPagination
+    lookup_field = 'slug'
+
+
 class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Course.active.all()
     serializer_class = CourseSerializer
