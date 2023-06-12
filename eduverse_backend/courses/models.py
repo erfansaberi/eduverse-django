@@ -19,7 +19,7 @@ class Course(models.Model):
     active = ActiveCoursesManager()
 
     class Meta:
-        ordering = ('-created_at', 'title')
+        ordering = ('-updated_at', 'title')
         indexes = [
             models.Index(fields=['-created_at'])
         ]
