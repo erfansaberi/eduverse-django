@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # local
     'courses.apps.CoursesConfig',
+    'polls.apps.PollsConfig',
 ]
 
 MIDDLEWARE = [
