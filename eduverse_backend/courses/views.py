@@ -35,7 +35,7 @@ class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
 class CourseSectionListView(views.APIView):
     serializer = CourseSectionsSerializer
 
-    def setup(self, request, *args, **kwargs):
+    def setup(self, request, *args, **kwargs): #TODO: BUG! This is not working
         super().setup(request, *args, **kwargs)
         self.course = get_object_or_404(Course, is_active=True, slug=course_slug)
 
