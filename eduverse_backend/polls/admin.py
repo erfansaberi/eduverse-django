@@ -20,6 +20,12 @@ class PollAdmin(admin.ModelAdmin):
     
 @admin.register(PollVote)
 class PollVoteAdmin(admin.ModelAdmin):
-    list_display = ('poll', 'option', 'user', 'submitted_at') # TODO: Query prefetch user and poll
+    list_display = ('poll', 'option', 'user', 'submitted_at')
     list_filter = ('poll', 'option', 'user')
     search_fields = ('poll', 'option', 'user')
+    
+    def get_queryset(self, request): # TODO: Check if this works
+        return super().get_queryset(request)\
+            .prefetch_related('user')\
+            .prefetch_related('poll')\
+            .prefetch_related('option')
