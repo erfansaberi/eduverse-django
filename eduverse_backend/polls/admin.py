@@ -2,12 +2,14 @@ from django.contrib import admin
 from .models import Poll, PollOption, PollVote
 
 
-class PollOptionInline(admin.StackedInline):
+class PollOptionInline(admin.StackedInline): # TODO: Query optimization needed (if possible)
     model = PollOption
-    list_display = ('option', 'votes_count')
-    extra = 2
+    fields = ('option','votes_count')
+    readonly_fields = ('votes_count',)
+    extra = 0
     min_num = 2
     max_num = 10
+    
 
 @admin.register(Poll)
 class PollAdmin(admin.ModelAdmin):
@@ -15,7 +17,6 @@ class PollAdmin(admin.ModelAdmin):
     list_filter = ('course', 'created_at', 'due_date')
     search_fields = ('question',)
     inlines = [PollOptionInline]
-    # TODO: Select poll options in the same page when adding poll (inline)
     
 @admin.register(PollVote)
 class PollVoteAdmin(admin.ModelAdmin):
