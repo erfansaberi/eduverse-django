@@ -27,6 +27,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 # Application definition
 
@@ -40,7 +43,8 @@ INSTALLED_APPS = [
 
     # 3rd party
     'rest_framework',
-
+    "debug_toolbar",
+    
     # local
     'courses.apps.CoursesConfig',
     'polls.apps.PollsConfig',
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'eduverse_backend.urls'
