@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from .managers import ActiveCoursesManager
+from django.core.validators import FileExtensionValidator
 
 # Create your models here.
 class Course(models.Model):
@@ -34,15 +35,24 @@ class Course(models.Model):
 
 
 class Section(models.Model):
+
+    class Type(models.TextChoices):
+        PDF = 'PD', 'Pdf'
+        DOC = 'DC', 'Doc'
+        VIDEO = 'VD', 'Video'
+        RAR = 'RR', 'Rar'
+        ZIP = 'ZP', 'Zip'
+
+
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name='sections')
     index = models.PositiveSmallIntegerField(default=0)
     title = models.CharField(max_length=100)
     description = models.TextField()
+    sec_file = models.FileField(upload_to='files/%Y/%m/%d/', null=False, validators=[FileExtensionValidator(allowed_extensions=['pdf', 'doc', 'rar', 'zip', 'MOV','avi','mp4','webm','mkv', 'wmv'])])
+    sec_type = models.CharField(max_length=2, choices=Type.choices, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now = True)
     deleted_at = models.DateTimeField(null=True, blank=True)
-    # temp
-    section_type = models.CharField(max_length=100)
 
     class Meta:
         ordering = ('-course__id', 'index')

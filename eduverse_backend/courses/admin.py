@@ -4,7 +4,8 @@ from .models import Course, Section
 # Register your models here.
 @admin.register(Section)
 class SectionAdmin(admin.ModelAdmin):
-    list_display = ('title', 'section_type', 'course', 'created_at')
+    list_display = ('title', 'sec_type', 'course', 'created_at')
+    readonly_fields = ('sec_type',)
     ordering = ('-course__id', '-index')
     raw_id_fields = ('course',)
 
