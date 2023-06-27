@@ -53,7 +53,7 @@ RUN apt-get update && apt-get --assume-yes install libpq-dev netcat-traditional
 COPY --from=builder /usr/src/app/wheels /wheels
 COPY --from=builder /usr/src/app/requirements.txt .
 RUN pip install --no-cache /wheels/*
-RUN pip install gunicorn
+RUN pip install gunicorn psycopg2-binary
 
 # copy entrypoint.prod.sh
 COPY ./entrypoint.prod.sh .
