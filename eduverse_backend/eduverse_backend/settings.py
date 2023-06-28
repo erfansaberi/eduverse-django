@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     "debug_toolbar",
     'rest_framework_simplejwt',
+    'corsheaders',
     
     # local
     'courses.apps.CoursesConfig',

@@ -8,7 +8,7 @@ from .models import Student
 # Create your views here.
 class UserRegisterView(APIView):
     def post(self, request):
-        serializer = UserRegisterSerializer(data=request.POST)
+        serializer = UserRegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = User.objects.create_user(
                 username = serializer.validated_data['username'],
