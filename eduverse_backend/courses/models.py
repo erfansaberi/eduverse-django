@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.core.exceptions import ValidationError
 from .managers import ActiveCoursesManager
 from django.core.validators import FileExtensionValidator
+from django.db.models import Manager
 
 # Create your models here.
 class Course(models.Model):
@@ -17,6 +18,7 @@ class Course(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
 
+    objects = Manager()
     active = ActiveCoursesManager()
 
     class Meta:
