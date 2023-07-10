@@ -1,0 +1,3 @@
+[submodule "eduverse-client"]
+	path = eduverse-client
+	url = git@github.com:iamhosen/eduverse-nuxt.git
