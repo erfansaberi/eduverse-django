@@ -23,3 +23,10 @@ An E-learning website backend, written in Django
     $ docker-compose -f docker-compose.prod.yml up -d --build
     ```
 3. Test the system at [http://localhost](http://localhost)
+
+### Note
+If you faced permission problem with the entrypoint scripts, you should give execution access to this files. Use commands:
+```sh
+~ chmod +x entrypoint.sh
+~ chmod +x entrypoint.prod.sh
+```
